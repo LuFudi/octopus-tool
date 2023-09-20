@@ -9,10 +9,11 @@ import java.util.concurrent.*;
 @Configuration
 public class EagleConfig {
 
-    public  final String EXCEL_EXECUTOR = "EXCEL_EXECUTOR";
+    public final String EXCEL_EXECUTOR = "EXCEL_EXECUTOR";
 
     /**
      * 线程池
+     *
      * @return
      */
     @Bean
