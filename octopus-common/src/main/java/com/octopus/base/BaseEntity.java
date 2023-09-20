@@ -1,5 +1,6 @@
-package entity.base;
+package com.octopus.base;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -20,14 +21,18 @@ public abstract class BaseEntity<T extends BaseEntity> {
     private Integer createdBy;
 
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdTime;
 
     private Integer updatedBy;
 
     @JsonSerialize(using = ToStringSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedTime;
 
+    /**
+     * 逻辑删除
+     */
+    @TableLogic(value="0",delval="1")
     private boolean deleted = false;
 
     private Integer version;
@@ -39,9 +44,9 @@ public abstract class BaseEntity<T extends BaseEntity> {
      * @param localDateTime 创建时间，初使修改时间和创建时间相同
      */
     public BaseEntity<T> init(Integer userId, LocalDateTime localDateTime) {
-        this.setCreatedAt(localDateTime);
+        this.setCreatedTime(localDateTime);
         this.setCreatedBy(userId);
-        this.setUpdatedAt(localDateTime);
+        this.setUpdatedTime(localDateTime);
         this.setUpdatedBy(userId);
         this.setVersion(1);
         return this;
@@ -63,7 +68,7 @@ public abstract class BaseEntity<T extends BaseEntity> {
      * @param localDateTime 更新时间
      */
     public BaseEntity<T> touch(Integer userId, LocalDateTime localDateTime) {
-        this.setUpdatedAt(localDateTime);
+        this.setUpdatedTime(localDateTime);
         this.setUpdatedBy(userId);
         return this;
     }
