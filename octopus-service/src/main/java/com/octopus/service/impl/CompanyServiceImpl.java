@@ -6,6 +6,8 @@ import com.octopus.service.ICompanyService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -17,4 +19,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> implements ICompanyService {
 
+
+    public List<String> listCompany(Company company, String name,int page){
+
+        return null;
+
+    }
 }
