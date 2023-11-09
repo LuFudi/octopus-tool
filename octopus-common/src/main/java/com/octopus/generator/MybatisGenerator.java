@@ -89,6 +89,8 @@ public class MybatisGenerator {
                 //.addTableFills(new Property("updateTime", FieldFill.INSERT_UPDATE))
                 //格式化文件名称
                 //.formatFileName("%sEntity")
+                .mapperBuilder()
+                .mapperAnnotation(org.apache.ibatis.annotations.Mapper.class)
                 .build();
 
         autoGenerator.global(globalconfig)
