@@ -15,7 +15,10 @@ import com.octopus.base.BaseEntity;
 
 import java.util.Collections;
 
-// 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
+/**
+ * mybatis-plus 配置官网
+ * https://baomidou.com/pages/981406/#service-%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE
+ */
 public class MybatisGenerator {
     public static void main(String[] args) {
 
