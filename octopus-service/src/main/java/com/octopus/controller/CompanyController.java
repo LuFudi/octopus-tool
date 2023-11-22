@@ -1,5 +1,6 @@
 package com.octopus.controller;
 
+import com.octopus.base.Result;
 import com.octopus.entity.Company;
 import com.octopus.service.TestService;
 import com.octopus.service.impl.CompanyServiceImpl;
@@ -30,8 +31,8 @@ public class CompanyController {
 
     @RequestMapping("/test")
     @ResponseBody
-    public void test(){
-        testService.test();
+    public Result<String> test(){
+        return Result.successWithData("正常返回");
 
     }
 

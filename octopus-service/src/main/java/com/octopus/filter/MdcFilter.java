@@ -5,6 +5,7 @@ import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -18,8 +19,12 @@ public class MdcFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String traceId = RandomUtil.randomString(10);
+        String traceId = RandomUtil.randomString(20);
         MDC.put(TRACE_ID,traceId);
+        //将TRACE_ID加入到响应头
+        HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+        httpResponse.addHeader(TRACE_ID, traceId);
+
         try {
             filterChain.doFilter(servletRequest,servletResponse);
         }finally {
