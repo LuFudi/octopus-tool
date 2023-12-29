@@ -51,7 +51,9 @@ public class MybatisGenerator {
         //表配置
         StrategyConfig tableConfig = new StrategyConfig.Builder()
                 //模糊匹配表名，与notLikeTable只能配置一个
-                .likeTable(new LikeTable("tfd"))
+                //.likeTable(new LikeTable("tfd"))
+                //精确表名
+                .addInclude("","")
                 //.notLikeTable(LikeTable)
                 //统一去除前缀
                 .addTablePrefix("tfd_","Tfd_")

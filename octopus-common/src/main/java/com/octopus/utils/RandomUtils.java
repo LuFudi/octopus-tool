@@ -1,5 +1,8 @@
 package com.octopus.utils;
 
+import cn.binarywang.tools.generator.ChineseIDCardNumberGenerator;
+
+
 import java.util.*;
 
 
@@ -108,10 +111,16 @@ public class RandomUtils {
         return map;
     }
 
+
+    public static String getIdNumber(){
+        return ChineseIDCardNumberGenerator.getInstance().generate();
+    }
+
+
     public static void main(String[] args) {
+
         for (int i = 0; i < 100; i++) {
-            System.out.println(getTel());
-            System.out.println(getChineseName());
+            System.out.println(getIdNumber());
 //          System.out.println(getEmailName(6,9));
         }
     }
