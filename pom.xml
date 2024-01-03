@@ -14,6 +14,7 @@
     <modules>
         <module>octopus-common</module>
         <module>octopus-service</module>
+        <module>octopus-test</module>
     </modules>
 
     <groupId>org.octopus</groupId>

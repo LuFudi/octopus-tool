@@ -3,7 +3,7 @@ package com.octopus;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-public class CountDownLunchTest {
+public class CountDownLatchTest {
     public static void main(String[] args) {
         CountDownLatch downLatch = new CountDownLatch(10);
         downLatch.countDown();
@@ -17,12 +17,13 @@ public class CountDownLunchTest {
                 }
             } catch (InterruptedException ex) {
                 retryCount++;
-                Thread.currentThread().interrupt();
+                Thread.interrupted();
             } catch (Exception ex) {
                 retryCount++;
             }
         }
         if (retryCount >= maxRetryCount) {
+
             System.out.println("error");
         }
 
