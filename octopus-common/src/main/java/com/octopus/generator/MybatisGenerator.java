@@ -23,7 +23,7 @@ public class MybatisGenerator {
     public static void main(String[] args) {
 
         //连接配置
-        DataSourceConfig dataSourceConfig = new DataSourceConfig.Builder("jdbc:mysql://127.0.0.1:3306/world", "root", "123456")
+        DataSourceConfig dataSourceConfig = new DataSourceConfig.Builder("jdbc:mysql://127.0.0.1:3306/ivt", "root", "123456")
                 .schema("mybatis-plus")
                 .keyWordsHandler(new MySqlKeyWordsHandler())
                 .build();
@@ -53,10 +53,10 @@ public class MybatisGenerator {
                 //模糊匹配表名，与notLikeTable只能配置一个
                 //.likeTable(new LikeTable("tfd"))
                 //精确表名
-                .addInclude("","")
+                .addInclude("sas_ivt_shelf_model_snap_shot")
                 //.notLikeTable(LikeTable)
                 //统一去除前缀
-                .addTablePrefix("tfd_","Tfd_")
+                .addTablePrefix("tfd_","Tfd_","sas_ivt_")
                 //后缀匹配
                 //.addFieldSuffix("_flag")
                 .build()

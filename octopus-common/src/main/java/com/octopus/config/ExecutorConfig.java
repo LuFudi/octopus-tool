@@ -6,8 +6,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.*;
 
+/**
+ * @author Administrator
+ */
 @Configuration
-public class EagleConfig {
+public class ExecutorConfig {
 
     public final String EXCEL_EXECUTOR = "EXCEL_EXECUTOR";
 
@@ -16,11 +19,11 @@ public class EagleConfig {
      *
      * @return
      */
-    @Bean
+    @Bean(name = "excelExecutor")
     public ExecutorService excelExecutor() {
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setDaemon(true)
                 .setNamePrefix(EXCEL_EXECUTOR.concat("_")).build();
-        return new ThreadPoolExecutor(5, 5,
-                5, TimeUnit.SECONDS, new ArrayBlockingQueue(100), threadFactory);
+        return new ThreadPoolExecutor(5, 20,
+                5, TimeUnit.SECONDS, new ArrayBlockingQueue(2000), threadFactory);
     }
 }
