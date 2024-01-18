@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author Lenovo
  */
-public class OrderProcess<T> extends java.lang.Process {
+public class OrderProcess<T> extends Process {
 
     @Override
     public OperatorEnum getOperator() {
