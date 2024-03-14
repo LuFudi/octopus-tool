@@ -1,7 +1,10 @@
 package com.octopus.base.es;
 
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateRequest;
@@ -11,6 +14,7 @@ import org.elasticsearch.xcontent.XContentType;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,11 +22,25 @@ import java.util.Map;
  * @author Administrator
  */
 @Service
+@Slf4j
 public class EsDataOperation {
 
     @Resource
     private RestHighLevelClient client ;
     private final RequestOptions options = RequestOptions.DEFAULT;
+
+
+    public Map<String,Object> get(String indexName,String id){
+        GetRequest getRequest = new GetRequest();
+        getRequest.index(indexName).id(id);
+        try {
+            GetResponse getResponse = this.client.get(getRequest,RequestOptions.DEFAULT);
+            return getResponse.getSourceAsMap();
+        }catch (Exception e){
+            log.error("获取es数据失败,exception：",e);
+        }
+        return new HashMap<>();
+    }
 
     /**
      * 写入数据
