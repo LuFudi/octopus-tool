@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
-  <process id="process1" name="默认组长审批" isExecutable="true">
+  <process id="leave" name="默认组长审批" isExecutable="true">
     <documentation>默认组长审批</documentation>
     <startEvent id="sid-142fcc17-ab1e-449d-b862-2463e6c285ef" name="开始"/>
-    <userTask id="sid-44e98eed-50c7-4578-bf8f-cf4f9d4ae0be" name="提交请假申请">
-      <extensionElements/>
+    <userTask id="sid-44e98eed-50c7-4578-bf8f-cf4f9d4ae0be" name="提交请假申请" activiti:assignee="&quot;${employee}&quot;">
+      <extensionElements>
+        <activiti:executionListener class="Class 1"/>
+      </extensionElements>
     </userTask>
     <userTask id="sid-ca3fb9a7-93b4-440c-8324-dbded3786290" name="组长审批"/>
     <userTask id="sid-e394663a-857c-4c66-9e50-865a7ee250fb" name="财务审批"/>
@@ -31,8 +33,8 @@
     <sequenceFlow id="sid-b4e8537a-8e49-4669-a560-f1a3147a49ff" sourceRef="sid-ca3fb9a7-93b4-440c-8324-dbded3786290" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
     <sequenceFlow id="sid-428341d7-49d4-4dc1-b32f-4e5a5d249574" sourceRef="sid-a2375998-a16f-429a-96d2-1733c7350278" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_process1">
-    <bpmndi:BPMNPlane bpmnElement="process1" id="BPMNPlane_process1">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leave">
+    <bpmndi:BPMNPlane bpmnElement="leave" id="BPMNPlane_leave">
       <bpmndi:BPMNShape id="shape-50b6a277-1ea7-40e9-b3a4-de2931d170a6" bpmnElement="sid-142fcc17-ab1e-449d-b862-2463e6c285ef">
         <omgdc:Bounds x="-25.000006" y="-98.57286" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
