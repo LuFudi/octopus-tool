@@ -9,7 +9,7 @@
       </extensionElements>
     </userTask>
     <userTask id="sid-ca3fb9a7-93b4-440c-8324-dbded3786290" name="组长审批" activiti:assignee="${teamLeader}"/>
-    <userTask id="sid-e394663a-857c-4c66-9e50-865a7ee250fb" name="财务审批"/>
+    <userTask id="sid-e394663a-857c-4c66-9e50-865a7ee250fb" name="财务审批" activiti:assignee="${finance}"/>
     <endEvent id="sid-44efd06d-8ce6-4d41-87b6-9109bad00626" name="结束"/>
     <sequenceFlow id="sid-dfdf89cf-53a7-475e-b974-d5aadfbe03ae" sourceRef="sid-142fcc17-ab1e-449d-b862-2463e6c285ef" targetRef="sid-44e98eed-50c7-4578-bf8f-cf4f9d4ae0be"/>
     <sequenceFlow id="sid-0c041ff6-e924-4d09-887f-abef7c7caf98" sourceRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb" targetRef="sid-44efd06d-8ce6-4d41-87b6-9109bad00626"/>
@@ -19,8 +19,8 @@
       <documentation/>
       <conditionExpression xsi:type="tFormalExpression"/>
     </sequenceFlow>
-    <userTask id="sid-5a3ae19c-3ec6-4067-a496-8840da22260a" name="总监审批" activiti:assignee="${director}"/>
-    <userTask id="sid-a2375998-a16f-429a-96d2-1733c7350278" name="经理审批" activiti:assignee="${manager}"/>
+    <userTask id="sid-5a3ae19c-3ec6-4067-a496-8840da22260a" name="总监审批" activiti:assignee="${manager}"/>
+    <userTask id="sid-a2375998-a16f-429a-96d2-1733c7350278" name="经理审批" activiti:assignee="${director}"/>
     <sequenceFlow id="sid-641f8290-3fc5-48a3-9508-b4934e68d750" sourceRef="sid-3fe46d46-33f4-4a58-965d-7703552f184d" targetRef="sid-a2375998-a16f-429a-96d2-1733c7350278" name="大于等于3天但少于5天">
       <documentation/>
       <conditionExpression xsi:type="tFormalExpression">${day &gt;= 3 &amp;&amp; day &lt; 5}</conditionExpression>
@@ -32,6 +32,8 @@
     <sequenceFlow id="sid-dd7e2ac6-b284-4371-849d-3b3fad625931" sourceRef="sid-5a3ae19c-3ec6-4067-a496-8840da22260a" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
     <sequenceFlow id="sid-b4e8537a-8e49-4669-a560-f1a3147a49ff" sourceRef="sid-ca3fb9a7-93b4-440c-8324-dbded3786290" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
     <sequenceFlow id="sid-428341d7-49d4-4dc1-b32f-4e5a5d249574" sourceRef="sid-a2375998-a16f-429a-96d2-1733c7350278" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
+    <scriptTask id="sid-c15a0649-16a8-4280-b12b-0d19ff43bec2"/>
+    <serviceTask id="sid-dd4cd91a-cbb6-4a1b-b30f-501b4a58f86d" activiti:exclusive="true"/>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_leave">
     <bpmndi:BPMNPlane bpmnElement="leave" id="BPMNPlane_leave">
@@ -70,7 +72,7 @@
         <omgdi:waypoint x="-10.000006" y="97.440475"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="sid-44f6b8d2-913f-4cda-83e0-1e43b61de6b2" bpmnElement="sid-5a3ae19c-3ec6-4067-a496-8840da22260a">
-        <omgdc:Bounds x="64.14024" y="97.44047" width="60.000004" height="30.0"/>
+        <omgdc:Bounds x="64.14024" y="97.44048" width="60.000004" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="sid-2f082014-ddc6-4e72-885e-069147672329" bpmnElement="sid-a2375998-a16f-429a-96d2-1733c7350278">
         <omgdc:Bounds x="-142.96559" y="97.44047" width="60.000004" height="30.0"/>
@@ -83,10 +85,10 @@
       <bpmndi:BPMNEdge id="edge-5e380fd8-f28e-4361-bdb3-517f6bbaefe0" bpmnElement="sid-532423b3-fbc8-4bd5-9414-822830c68c8c">
         <omgdi:waypoint x="9.999992" y="48.50094"/>
         <omgdi:waypoint x="64.14024" y="78.67091"/>
-        <omgdi:waypoint x="94.14025" y="97.44046"/>
+        <omgdi:waypoint x="94.14025" y="97.440475"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-14fef22a-1dde-441c-9051-709c809b8655" bpmnElement="sid-dd7e2ac6-b284-4371-849d-3b3fad625931">
-        <omgdi:waypoint x="94.14025" y="127.44045"/>
+        <omgdi:waypoint x="94.14025" y="127.44047"/>
         <omgdi:waypoint x="93.61406" y="194.51425"/>
         <omgdi:waypoint x="19.999994" y="194.51427"/>
       </bpmndi:BPMNEdge>
@@ -99,6 +101,12 @@
         <omgdi:waypoint x="-112.96559" y="194.51424"/>
         <omgdi:waypoint x="-40.000008" y="194.51425"/>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="shape-0a245b3f-9a13-4656-b697-037bee5e0ef9" bpmnElement="sid-c15a0649-16a8-4280-b12b-0d19ff43bec2">
+        <omgdc:Bounds x="115.0" y="-75.0" width="100.0" height="80.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape-32e0338c-5429-428b-9155-2915f2e91559" bpmnElement="sid-dd4cd91a-cbb6-4a1b-b30f-501b4a58f86d">
+        <omgdc:Bounds x="0.0" y="-215.0" width="100.0" height="80.0"/>
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </definitions>
