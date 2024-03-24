@@ -5,7 +5,14 @@
     <startEvent id="sid-142fcc17-ab1e-449d-b862-2463e6c285ef" name="开始"/>
     <userTask id="sid-44e98eed-50c7-4578-bf8f-cf4f9d4ae0be" name="提交请假申请" activiti:assignee="${employee}">
       <extensionElements>
-        <activiti:executionListener class="Class 1"/>
+        <activiti:taskListener event="create" class="com.octopus.activiti.listener.LeaveSubmitLeaveApplicationListener">
+          <activiti:field name="employee">
+            <activiti:string>${employee}</activiti:string>
+          </activiti:field>
+          <activiti:field name="test">
+            <activiti:string>"test"</activiti:string>
+          </activiti:field>
+        </activiti:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="sid-ca3fb9a7-93b4-440c-8324-dbded3786290" name="组长审批" activiti:assignee="${teamLeader}"/>
@@ -32,8 +39,6 @@
     <sequenceFlow id="sid-dd7e2ac6-b284-4371-849d-3b3fad625931" sourceRef="sid-5a3ae19c-3ec6-4067-a496-8840da22260a" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
     <sequenceFlow id="sid-b4e8537a-8e49-4669-a560-f1a3147a49ff" sourceRef="sid-ca3fb9a7-93b4-440c-8324-dbded3786290" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
     <sequenceFlow id="sid-428341d7-49d4-4dc1-b32f-4e5a5d249574" sourceRef="sid-a2375998-a16f-429a-96d2-1733c7350278" targetRef="sid-e394663a-857c-4c66-9e50-865a7ee250fb"/>
-    <scriptTask id="sid-c15a0649-16a8-4280-b12b-0d19ff43bec2"/>
-    <serviceTask id="sid-dd4cd91a-cbb6-4a1b-b30f-501b4a58f86d" activiti:exclusive="true"/>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_leave">
     <bpmndi:BPMNPlane bpmnElement="leave" id="BPMNPlane_leave">
@@ -101,12 +106,6 @@
         <omgdi:waypoint x="-112.96559" y="194.51424"/>
         <omgdi:waypoint x="-40.000008" y="194.51425"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="shape-0a245b3f-9a13-4656-b697-037bee5e0ef9" bpmnElement="sid-c15a0649-16a8-4280-b12b-0d19ff43bec2">
-        <omgdc:Bounds x="115.0" y="-75.0" width="100.0" height="80.0"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="shape-32e0338c-5429-428b-9155-2915f2e91559" bpmnElement="sid-dd4cd91a-cbb6-4a1b-b30f-501b4a58f86d">
-        <omgdc:Bounds x="0.0" y="-215.0" width="100.0" height="80.0"/>
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </definitions>

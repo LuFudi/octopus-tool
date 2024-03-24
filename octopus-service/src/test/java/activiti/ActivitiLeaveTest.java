@@ -101,6 +101,16 @@ public class ActivitiLeaveTest {
         log.info("当前活动Id：" + processInstance.getActivityId());
     }
 
+
+    /**
+     * 修改变量
+     */
+    @Test
+    public void updateVariables() {
+        runtimeService.setVariable("12a6052b-e9b0-11ee-b8f6-00ff2c9247ca","teamLeader","周泰");
+    }
+
+
     /**
      * 查询实例
      */
@@ -129,17 +139,19 @@ public class ActivitiLeaveTest {
 
         List<Task> list_1 = taskService.createTaskQuery().taskAssignee("李四").processDefinitionKey("leave").list();
         list_1.forEach(e->{
-            //进入下一个节点
-            taskService.complete(e.getId());
             // 添加审批意见为通过
             taskService.addComment(e.getId(), e.getProcessInstanceId(), "通过");
+            //进入下一个节点
+            taskService.complete(e.getId());
+
 
         });
         List<Task> list_2 = taskService.createTaskQuery().taskAssignee("王五").processDefinitionKey("leave").list();
         list_2.forEach(e->{
+            taskService.addComment(e.getId(), e.getProcessInstanceId(), "通过");
             //进入下一个节点
             taskService.complete(e.getId());
-            taskService.addComment(e.getId(), e.getProcessInstanceId(), "通过");
+
         });
     }
 
